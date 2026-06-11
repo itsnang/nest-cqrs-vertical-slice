@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CqrsModule } from '@nestjs/cqrs';
 import { typeOrmConfigFactory } from '../infrastructure/data/typeorm.config';
+import { UserEntity } from '../infrastructure/data/entities/user.entity';
+import { UserExistenceValidator } from './common/decorators/user-existence.decorator';
 import configuration from '../../config/configuration';
 
 @Module({
@@ -13,6 +15,7 @@ import configuration from '../../config/configuration';
       useFactory: typeOrmConfigFactory,
     }),
     TypeOrmModule.forFeature([
+      UserEntity,
       /* OrderEntity */
     ]),
     CqrsModule.forRoot(),
@@ -21,6 +24,7 @@ import configuration from '../../config/configuration';
     /* OrdersController */
   ],
   providers: [
+    UserExistenceValidator,
     // command/query/event handlers go here as plain classes
     // ports → adapters bindings:
     // { provide: ORDER_REPOSITORY, useClass: OrderWriteRepositoryImpl },
