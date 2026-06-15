@@ -8,7 +8,7 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { UserExistenceValidate } from '../common/decorators/user-existence.decorator';
+import { UserExistenceValidate } from '../../../shared/decorators/user-existence.decorator.js';
 
 export class OrderItemDto {
   @IsUUID()
