@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { OrderEntity } from './entities/order.entity';
-import { UserEntity } from './entities/user.entity';
+import { OrderEntity } from './order/infrastructure/entities/order.entity.js';
+import { UserEntity } from './shared/entities/user.entity.js';
 
 export const typeOrmConfigFactory = (
   config: ConfigService,
