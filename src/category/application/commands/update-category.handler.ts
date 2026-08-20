@@ -28,6 +28,7 @@ export class UpdateCategoryHandler implements ICommandHandler<
     if (command.name !== undefined) updates.name = command.name;
     if (command.description !== undefined)
       updates.description = command.description;
+    if (command.iconUrl !== undefined) updates.iconUrl = command.iconUrl;
 
     return this.categoryRepository.save({ ...category, ...updates });
   }

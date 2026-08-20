@@ -26,7 +26,7 @@ export class CategoriesController {
   @Post()
   create(@Body() dto: CreateCategoryDto) {
     return this.commandBus.execute(
-      new CreateCategoryCommand(dto.name, dto.description),
+      new CreateCategoryCommand(dto.name, dto.description, dto.iconUrl),
     );
   }
 
@@ -43,7 +43,7 @@ export class CategoriesController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() dto: UpdateCategoryDto) {
     return this.commandBus.execute(
-      new UpdateCategoryCommand(id, dto.name, dto.description),
+      new UpdateCategoryCommand(id, dto.name, dto.description, dto.iconUrl),
     );
   }
 

@@ -15,7 +15,13 @@ export class ProductsController {
   @Post()
   create(@Body() dto: CreateProductDto) {
     return this.commandBus.execute(
-      new CreateProductCommand(dto.categoryId, dto.name, dto.priceCents),
+      new CreateProductCommand(
+        dto.categoryId,
+        dto.name,
+        dto.priceCents,
+        dto.description,
+        dto.imageUrl,
+      ),
     );
   }
 

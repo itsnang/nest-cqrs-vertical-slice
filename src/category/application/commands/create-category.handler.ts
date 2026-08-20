@@ -22,6 +22,7 @@ export class CreateCategoryHandler implements ICommandHandler<
       id: randomUUID(),
       name: command.name,
       description: command.description ?? null,
+      iconUrl: command.iconUrl ?? null,
     });
   }
 }

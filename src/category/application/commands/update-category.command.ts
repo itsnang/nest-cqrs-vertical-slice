@@ -3,5 +3,6 @@ export class UpdateCategoryCommand {
     public readonly id: string,
     public readonly name?: string,
     public readonly description?: string,
+    public readonly iconUrl?: string,
   ) {}
 }

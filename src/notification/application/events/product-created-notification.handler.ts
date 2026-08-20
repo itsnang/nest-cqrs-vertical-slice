@@ -17,7 +17,7 @@ export class ProductCreatedNotificationHandler implements IEventHandler<ProductC
   async handle(event: ProductCreatedEvent): Promise<void> {
     const price = (event.priceCents / 100).toFixed(2);
     await this.notifications.send(
-      `New product "${event.name}" listed at $${price}`,
+      `🆕 New Product\nName: ${event.name}\nPrice: $${price}\nID: ${event.productId}`,
     );
   }
 }

@@ -1,10 +1,11 @@
 import {
   IsInt,
+  IsNotEmpty,
+  IsOptional,
   IsPositive,
   IsString,
+  IsUrl,
   IsUUID,
-  MaxLength,
-  MinLength,
 } from 'class-validator';
 
 export class CreateProductDto {
@@ -12,11 +13,18 @@ export class CreateProductDto {
   categoryId: string;
 
   @IsString()
-  @MinLength(2)
-  @MaxLength(120)
+  @IsNotEmpty()
   name: string;
+
+  @IsOptional()
+  @IsString()
+  description?: string;
 
   @IsInt()
   @IsPositive()
   priceCents: number;
+
+  @IsOptional()
+  @IsUrl()
+  imageUrl?: string;
 }

@@ -6,8 +6,8 @@ import type { INotificationService } from '../../application/interfaces/notifica
 // e.g. call an HTTP API instead of logging. Kept as a console logger here
 // so the template runs with zero external config.
 @Injectable()
-export class ConsoleNotificationService implements INotificationService {
-  private readonly logger = new Logger(ConsoleNotificationService.name);
+export class ConsoleService implements INotificationService {
+  private readonly logger = new Logger(ConsoleService.name);
 
   send(message: string): Promise<void> {
     this.logger.log(message);

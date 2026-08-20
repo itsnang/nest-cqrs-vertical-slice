@@ -34,7 +34,9 @@ export class CreateProductHandler implements ICommandHandler<
       id: randomUUID(),
       categoryId: command.categoryId,
       name: command.name,
+      description: command.description ?? null,
       priceCents: command.priceCents,
+      imageUrl: command.imageUrl ?? null,
     });
 
     // publish after the write commits — other slices react via their own
