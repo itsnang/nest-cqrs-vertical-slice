@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigFactory } from './typeorm.config.js';
 import { SharedModule } from './shared/shared.module.js';
-import { OrderModule } from './order/order.module.js';
 import { CategoryModule } from './category/category.module.js';
 import { ProductModule } from './product/product.module.js';
 import { NotificationModule } from './notification/notification.module.js';
@@ -17,7 +16,6 @@ import configuration from '../config/configuration.js';
       useFactory: typeOrmConfigFactory,
     }),
     SharedModule,
-    OrderModule,
     CategoryModule,
     ProductModule,
     NotificationModule,
