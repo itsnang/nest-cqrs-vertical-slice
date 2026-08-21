@@ -4,7 +4,7 @@ import { NotificationsController } from './api/controllers/notifications.control
 import { ProductCreatedNotificationHandler } from './application/events/product-created-notification.handler.js';
 import { SendNotificationHandler } from './application/commands/send-notification.handler.js';
 import { NOTIFICATION_SERVICE } from './application/interfaces/notification.service.js';
-import { ConsoleService } from './infrastructure/services/console.service.js';
+import { TelegramService } from './infrastructure/services/telegram.service.js';
 
 @Module({
   imports: [CqrsModule],
@@ -12,7 +12,7 @@ import { ConsoleService } from './infrastructure/services/console.service.js';
   providers: [
     ProductCreatedNotificationHandler,
     SendNotificationHandler,
-    { provide: NOTIFICATION_SERVICE, useClass: ConsoleService },
+    { provide: NOTIFICATION_SERVICE, useClass: TelegramService },
   ],
 })
 export class NotificationModule {}

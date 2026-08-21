@@ -30,7 +30,7 @@ src/
 │   │   ├── events/          ProductCreatedNotificationHandler — reacts to product/
 │   │   └── interfaces/      INotificationService port + DI token
 │   └── infrastructure/
-│       └── services/        ConsoleService — swappable concrete impl
+│       └── services/        TelegramService — swappable concrete impl
 └── shared/                 cross-cutting only: guards, decorators, entities
 ```
 
@@ -40,7 +40,7 @@ src/
 |---|---|
 | `category/` | The floor: plain CRUD. No `domain/` layer — there's no real business invariant to protect, so the handler just talks straight to `Repository<CategoryEntity>`. Full create/update/delete/get/list. |
 | `product/` | Slices aren't sealed boxes. `create-product` validates `categoryId` against `category/`'s own entity, and `category/`'s delete handler checks `product/`'s entity before allowing a delete (`409` if in use). Also **publishes** `ProductCreatedEvent` via a plain `EventBus.publish()` call — no aggregate, no event-sourcing machinery, just a domain event. |
-| `notification/` | Event-driven, and reachable two ways: `POST /notifications/send` triggers it directly; `ProductCreatedEvent` triggers it automatically via `@EventsHandler`. Both paths go through the same `INotificationService` interface — swap `ConsoleService` for a real provider (Telegram, email, SMS...) without touching the handler. |
+| `notification/` | Event-driven, and reachable two ways: `POST /notifications/send` triggers it directly; `ProductCreatedEvent` triggers it automatically via `@EventsHandler`. Both paths go through the same `INotificationService` interface — currently backed by `TelegramService`, swappable for any other provider (email, SMS...) without touching the handler. |
 
 ## Request lifecycle
 
